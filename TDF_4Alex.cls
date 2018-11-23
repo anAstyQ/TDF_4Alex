@@ -64,12 +64,17 @@ public class TDF_4Alex {
         if(num <= 10000){
             for(Integer i = 0; i < num; i++){
                 opp = createOpp(i, accIdList);
-                oppL.add(opp);			//**
+                oppL.add(opp);			
             }
         }
         return oppL;        
     }
-     
+     /*i'm not sure what fields are standart. 
+     Thare is a difference from org to org. 
+     For recent Scratch Org some of fields were called custom and not available. 
+     So it's up to u, to make it visible or not. 
+     U can also change fields and fill it with neended data with help of Randomizer.Class and String methods get...().*/
+	
     public static Opportunity createOpp(Integer index, List<String> accIdL){
         Opportunity opp = new Opportunity();
         opp.Amount = Randomizer.getRandomNumber(10000000);
@@ -203,4 +208,8 @@ public class TDF_4Alex {
         
         return Randomizer.getRandomString(city);
     }    
+	/*
+	Best Wishes for grandpa, 
+	Nasty Nastya :)
+	*/
 }
