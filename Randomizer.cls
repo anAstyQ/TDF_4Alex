@@ -1,5 +1,6 @@
 public class Randomizer {
 
+    
      //returns a random Integer
      public static Integer getRandomNumber(Integer size){
           Double d = math.random() * size;
@@ -81,29 +82,7 @@ public class Randomizer {
                 Strings.add(a.getValue());
             }
             return Strings;
-     }
-
-     //returns a map of all picklists and multiselect picklists for a givien object
-     //the keyset is the field name using proper case
-     public static Map<String,List<String>> getPicVals(sObject s_object){
-          Map<String,List<String>> valueMap = new Map<String,List<String>>();
-          Schema.sObjectType sobject_type = s_object.getSObjectType();
-          Schema.DescribeSObjectResult r = sobject_type.getDescribe();
-          Map<String, Schema.SObjectField> field_map = r.fields.getMap();
-
-          for(String s : field_map.keyset()){
-               List<String> strings = new List<String>();
-               Schema.DescribeFieldResult F = field_map.get(s).getDescribe();
-               if(f.GetType() == Schema.DisplayType.Picklist || f.GetType() == Schema.DisplayType.MultiPicklist){
-                    List<Schema.PicklistEntry> pick_list_values = field_map.get(s).getDescribe().getPickListValues();
-                    for (Schema.PicklistEntry a : pick_list_values) {
-                         strings.add(a.getValue());
-                   }
-                   valueMap.put(String.valueOf(field_map.get(s)),strings);
-               }
-          }
-          return valueMap;
-     }
+     }  
 
      //Returns Lorem Ipsum placeholder text.
      public static String getPlaceholderText(Integer length){
