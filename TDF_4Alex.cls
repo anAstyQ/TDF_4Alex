@@ -52,7 +52,8 @@ public class TDF_4Alex {
         Account acc = new Account();
         if(num <= 10000){
             for(Integer i = 0; i < num; i++){
-                accountL.add(createAcc(i));
+                acc = createAcc(i);
+                accountL.add(acc);
             }
         }
         return accountL;        
@@ -105,8 +106,8 @@ public class TDF_4Alex {
         acc.AccountSource = Randomizer.getRandomPickListValue(acc, 'AccountSource', false);
         //acc.Active__c = Randomizer.getRandomPickListValue(acc, 'Active__c', false);
         acc.AnnualRevenue = Randomizer.getRandomNumber(100000000);
-        acc.BillingCity = getCity();
-        acc.BillingCountry = 'USA';
+        //acc.BillingCity = getCity();
+        //acc.BillingCountry = 'USA';
         //acc.CustomerPriority__c = Randomizer.getRandomPickListValue(acc, 'CustomerPriority__c', false);
         acc.NumberOfEmployees = Randomizer.getRandomNumber(15000) ;
         //acc.NumberofLocations__c = Randomizer.getRandomNumber(10);
@@ -212,4 +213,4 @@ public class TDF_4Alex {
 	Best Wishes for grandpa, 
 	Nasty Nastya :)
 	*/
-}
+} 
