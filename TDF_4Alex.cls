@@ -50,9 +50,15 @@ public class TDF_4Alex {
     public static List<Account> createAccList(Integer num){
         List<Account> accountL = new List<Account>();
         Account acc = new Account();
+        
+        List<String> AccountSourceVal = Randomizer.getPickListValues1(acc, 'AccountSource', false);
+        List<String> IndustryVal = Randomizer.getPickListValues1(acc, 'Industry', false);
+        List<String> OwnershipVal = Randomizer.getPickListValues1(acc, 'Ownership', false);
+        List<String> RatingVal = Randomizer.getPickListValues1(acc, 'Rating', false);
+        
         if(num <= 10000){
             for(Integer i = 0; i < num; i++){
-                acc = createAcc(i);
+                acc = createAcc(i, AccountSourceVal, IndustryVal, OwnershipVal, RatingVal);
                 accountL.add(acc);
             }
         }
@@ -62,9 +68,14 @@ public class TDF_4Alex {
     public static List<Opportunity> createOppList(Integer num, List<String> accIdList){
         List<Opportunity> oppL = new List<Opportunity>();
         Opportunity opp = new Opportunity();
+        
+        List<String> typeVal = Randomizer.getPickListValues1(opp, 'Type', false);
+        List<String> leadSourceVal = Randomizer.getPickListValues1(opp, 'LeadSource', false);
+        List<String> stageNameVal = Randomizer.getPickListValues1(opp, 'StageName', false);
+        
         if(num <= 10000){
             for(Integer i = 0; i < num; i++){
-                opp = createOpp(i, accIdList);
+                opp = createOpp(i,typeVal, leadSourceVal, stageNameVal, accIdList);
                 oppL.add(opp);			
             }
         }
@@ -76,13 +87,14 @@ public class TDF_4Alex {
      So it's up to u, to make it visible or not. 
      U can also change fields and fill it with neended data with help of Randomizer.Class and String methods get...().*/
 	
-    public static Opportunity createOpp(Integer index, List<String> accIdL){
+    public static Opportunity createOpp(Integer index, List<String> typeVal, List<String> leadSourceVal, List<String> stageNameVal, List<String> accIdL){
         Opportunity opp = new Opportunity();
         opp.Amount = Randomizer.getRandomNumber(10000000);
-        opp.CloseDate = Date.today().addDays(Randomizer.getRandomNumber(250));
-        opp.Type = Randomizer.getRandomPickListValue(opp, 'Type', false);
-        opp.LeadSource = Randomizer.getRandomPickListValue(opp, 'LeadSource', false);
-        opp.StageName = Randomizer.getRandomPickListValue(opp, 'StageName', false);
+        opp.CloseDate = Date.today().addDays(Randomizer.getRandomNumber(250));        
+        opp.Type = Randomizer.getRandomString(typeVal);
+        opp.LeadSource = Randomizer.getRandomString(leadSourceVal);
+        opp.StageName = Randomizer.getRandomString(stageNameVal);
+        
         //opp.DeliveryInstallationStatus__c = Randomizer.getRandomPickListValue(opp, 'DeliveryInstallationStatus__c', false);
         opp.Name = String.valueOf(getOppName() + ' ' + index);
         opp.Probability = Randomizer.getRandomNumber(100);
@@ -100,10 +112,11 @@ public class TDF_4Alex {
     }
 
    
-     public static Account createAcc(Integer index){
+     public static Account createAcc(Integer index, List<String> AccountSourceVal, List<String> IndustryVal, List<String> OwnershipVal, List<String> RatingVal){
+         /**/
         Account acc = new Account();
         acc.Name = getName() + ' ' + index;
-        acc.AccountSource = Randomizer.getRandomPickListValue(acc, 'AccountSource', false);
+        acc.AccountSource = Randomizer.getRandomString(AccountSourceVal);
         //acc.Active__c = Randomizer.getRandomPickListValue(acc, 'Active__c', false);
         acc.AnnualRevenue = Randomizer.getRandomNumber(100000000);
         //acc.BillingCity = getCity();
@@ -111,10 +124,10 @@ public class TDF_4Alex {
         //acc.CustomerPriority__c = Randomizer.getRandomPickListValue(acc, 'CustomerPriority__c', false);
         acc.NumberOfEmployees = Randomizer.getRandomNumber(15000) ;
         //acc.NumberofLocations__c = Randomizer.getRandomNumber(10);
-        acc.Industry = Randomizer.getRandomPickListValue(acc, 'Industry', false);
-        acc.Ownership = Randomizer.getRandomPickListValue(acc, 'Ownership', false); 
+        acc.Industry = Randomizer.getRandomString(IndustryVal);
+        acc.Ownership = Randomizer.getRandomString(OwnershipVal); 
         acc.Phone = index + '-' + 2*index;
-        acc.Rating = Randomizer.getRandomPickListValue(acc, 'Rating', false);
+        acc.Rating = Randomizer.getRandomString(RatingVal);
         acc.ShippingCity = getCity();
         acc.ShippingCountry = 'USA';
         //acc.SLA__c = Randomizer.getRandomPickListValue(acc, 'SLA__c', false);
@@ -213,4 +226,4 @@ public class TDF_4Alex {
 	Best Wishes for grandpa, 
 	Nasty Nastya :)
 	*/
-} 
+}
