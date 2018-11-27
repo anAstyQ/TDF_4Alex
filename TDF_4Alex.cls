@@ -91,9 +91,9 @@ public class TDF_4Alex {
         Opportunity opp = new Opportunity();
         opp.Amount = Randomizer.getRandomNumber(10000000);
         opp.CloseDate = Date.today().addDays(Randomizer.getRandomNumber(250));        
-        opp.Type = Randomizer.getRandomString(typeVal);
-        opp.LeadSource = Randomizer.getRandomString(leadSourceVal);
-        opp.StageName = Randomizer.getRandomString(stageNameVal);
+        opp.Type = typeVal[Randomizer.getRandomNumber(typeVal.size())];
+        opp.LeadSource = leadSourceVal[Randomizer.getRandomNumber(leadSourceVal.size())];
+        opp.StageName = stageNameVal[Randomizer.getRandomNumber(stageNameVal.size())];
         
         //opp.DeliveryInstallationStatus__c = Randomizer.getRandomPickListValue(opp, 'DeliveryInstallationStatus__c', false);
         opp.Name = String.valueOf(getOppName() + ' ' + index);
@@ -116,7 +116,7 @@ public class TDF_4Alex {
          /**/
         Account acc = new Account();
         acc.Name = getName() + ' ' + index;
-        acc.AccountSource = Randomizer.getRandomString(AccountSourceVal);
+        acc.AccountSource = AccountSourceVal[Randomizer.getRandomNumber(AccountSourceVal.size())];
         //acc.Active__c = Randomizer.getRandomPickListValue(acc, 'Active__c', false);
         acc.AnnualRevenue = Randomizer.getRandomNumber(100000000);
         //acc.BillingCity = getCity();
@@ -124,10 +124,10 @@ public class TDF_4Alex {
         //acc.CustomerPriority__c = Randomizer.getRandomPickListValue(acc, 'CustomerPriority__c', false);
         acc.NumberOfEmployees = Randomizer.getRandomNumber(15000) ;
         //acc.NumberofLocations__c = Randomizer.getRandomNumber(10);
-        acc.Industry = Randomizer.getRandomString(IndustryVal);
-        acc.Ownership = Randomizer.getRandomString(OwnershipVal); 
+        acc.Industry = IndustryVal[Randomizer.getRandomNumber(IndustryVal.size())];
+        acc.Ownership = OwnershipVal[Randomizer.getRandomNumber(OwnershipVal.size())]; 
         acc.Phone = index + '-' + 2*index;
-        acc.Rating = Randomizer.getRandomString(RatingVal);
+        acc.Rating = RatingVal[Randomizer.getRandomNumber(RatingVal.size())];
         acc.ShippingCity = getCity();
         acc.ShippingCountry = 'USA';
         //acc.SLA__c = Randomizer.getRandomPickListValue(acc, 'SLA__c', false);
