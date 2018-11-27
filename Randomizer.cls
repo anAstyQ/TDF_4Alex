@@ -17,7 +17,7 @@ public class Randomizer {
      }
 
      //Get's a random value from a list of strings
-     public static String getRandomString(List<String> strings){
+     /*public static String getRandomString(List<String> strings){
           List<Double> ranks = new List<Double>();
           Map<Double,String> rankMap = new Map<Double,String>();
 
@@ -26,19 +26,28 @@ public class Randomizer {
                Double rank;
 
                While(isDup){
-                    Double x = getRandomNumber(100000);
+                    Double x = getRandomNumber(1000);
                     if(!rankMap.containsKey(x)){
                          rank = x;
                          isDup = false;
                     }
                }
-
                ranks.add(rank);
                rankMap.put(rank,s);
           }
-
           ranks.sort();
           return rankMap.get(ranks.get(0));
+     }*/
+    
+    public static String getRandomString(List<String> strings){
+        Integer index = getRandomNumber(strings.size()*10);
+        String res;
+        try{
+            res = strings[index];
+        } catch(Exception e){
+            res= strings[strings.size()-1];
+        }
+        return res;
      }
 
      //Returns a random picklist value 
@@ -56,6 +65,22 @@ public class Randomizer {
                 Strings.add(a.getValue());
             }
             return getRandomString(Strings);
+     }   
+   
+    public static List<string> getPickListValues1(Sobject s_object, String field_name, Boolean allow_blank){
+          List<String> Strings = new List<String>();
+          if(allow_blank){
+               String b = '';
+               Strings.add(b);
+          }
+            Schema.sObjectType sobject_type = s_object.getSObjectType();
+            Schema.DescribeSObjectResult sobject_describe = sobject_type.getDescribe();
+            Map<String, Schema.SObjectField> field_map = sobject_describe.fields.getMap();
+            List<Schema.PicklistEntry> pick_list_values = field_map.get(field_name).getDescribe().getPickListValues();
+            for (Schema.PicklistEntry a : pick_list_values) {
+                Strings.add(a.getValue());
+            }
+            return Strings;
      }
 
      //returns a map of all picklists and multiselect picklists for a givien object
